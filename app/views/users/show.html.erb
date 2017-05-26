@@ -1,8 +1,7 @@
 <div class="page-header">
-  <h1>
-    Photos
-    <a href="/photos/new" class="btn btn-lg btn-success">New Photo</a>
-  </h1>
+  <h3>
+    <%= @user.username%>
+  </h3>
 </div>
 
 <div class="row">
@@ -11,26 +10,20 @@
       <tr>
         <th>Caption</th>
         <th>Image</th>
-        <th>User</th>
         <th>Actions</th>
       </tr>
-
-      <% @photos.each do |photo| %>
+      <% photos = @user.photos %>
+      <% photos.each do |photo| %>
       <tr>
         <td><%= photo.caption %></td>
         <td><img src="<%= photo.image %>" width="50"></td>
-        <td><%= photo.user_id %></td>
         <td>
           <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
-          <% if photo.user.id == current_user.id  %>
           <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
-        <% else  %>
-      </td>
-      <% end  %>
     </tr>
-    <% end %>
+    <% end  %>
   </table>
 </div>
 </div>
